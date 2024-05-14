@@ -1,3 +1,5 @@
+import Event from "@/components/Event/Event";
+
 export default function Page() {
-  return <h1 className="text-3xl font-bold underline">Hello, Nexxxt.js!</h1>;
+  return <Event />;
 }
