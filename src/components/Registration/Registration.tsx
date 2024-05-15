@@ -1,13 +1,52 @@
 "use client";
-import { useState } from "react";
+
+import { createClient } from "@supabase/supabase-js";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 export default function Registration() {
-  const [selectedValue, setSelectedValue] = useState("SocialMedia");
+  const validationSchema = yup.object({
+    firstName: yup.string().defined().required("Required"),
+    lastName: yup.string().defined().required("Required"),
+    email: yup.string().nullable().email("Enter a valid email"),
+    birthDate: yup
+      .date()
+      .nullable()
+      .min(new Date(1900, 0, 1))
+      .required("Required"),
+    whereKnow: yup.string().required("Required"),
+  });
 
-  const handleRadioChange = (value: string) => {
-    setSelectedValue(value);
-  };
-  console.log(selectedValue);
+  // const addUser = async (values: any) => {
+  //   const supabaseUrl = "https://isseretcvvmurwuxhqzm.supabase.co";
+  //   const supabaseKey = process.env.SUPABASE_KEY;
+  //   if (supabaseKey) {
+  //     const supabase = createClient(supabaseUrl, supabaseKey);
+  //     if (!values) {
+  //       return;
+  //     }
+  //     const { data, error } = await supabase.from("UserRegistration").insert({
+  //       data: values,
+  //       // created: new Date().toISOString(),
+  //     });
+  //   }
+  // };
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "ivanov@google.com",
+      birthDate: "",
+      whereKnow: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+      // addUser(values);
+    },
+  });
+
   return (
     <div className="h-screen bg-gray-800">
       <div className="pt-10 md:pt-20">
@@ -15,30 +54,46 @@ export default function Registration() {
           <h1 className="text-white text-center pb-8 font-light text-4xl md:text-5xl lg:text-6xl">
             Registration
           </h1>
-          <form className="flex flex-col items-center">
+
+          <form
+            onSubmit={formik.handleSubmit}
+            className="flex flex-col items-center"
+          >
             <div className="md:w-3/4 lg:w-2/3 xl:w-1/2">
               <div className="flex flex-col md:flex-row">
                 <input
-                  id="fName"
+                  id="firstName"
+                  name="firstName"
                   type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.firstName}
                   placeholder="First Name"
                   className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full outline-none focus:ring-2 focus:ring-blue-600"
                 />
                 <input
-                  id="lName"
+                  id="lastName"
+                  name="lastName"
                   type="text"
+                  value={formik.values.lastName}
+                  onChange={formik.handleChange}
                   placeholder="Last Name"
                   className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full outline-none focus:ring-2 focus:ring-blue-600"
                 />
                 <input
                   id="email"
+                  name="email"
                   type="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
                   className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full md:w-1/2 md:ml-2 outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="Email"
                 />
                 <input
-                  id="birthdate"
+                  id="birthDate"
+                  name="birthDate"
                   type="date"
+                  value={formik.values.birthDate}
+                  onChange={formik.handleChange}
                   placeholder="date of birth"
                   className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full md:w-1/2 md:ml-2 outline-none focus:ring-2 focus:ring-blue-600"
                 />
@@ -47,42 +102,48 @@ export default function Registration() {
                 Where did you hear about this event?
               </h3>
               <div>
-                <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                  <input
-                    type="radio"
-                    id="socialMedia"
-                    value="SocialMedia"
-                    checked={selectedValue === "SocialMedia"}
-                    onChange={() => handleRadioChange("SocialMedia")}
-                  />
-                  <i className="pl-2">Social media</i>
-                </label>
+                <fieldset
+                  id="whereKnow"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                >
+                  <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                    <input
+                      id="socialMedia"
+                      type="radio"
+                      name="whereKnow"
+                      value="socialMedia"
+                    />
+                    <i className="pl-2">Social media</i>
+                  </label>
 
-                <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                  <input
-                    type="radio"
-                    id="friends"
-                    value="Friends"
-                    checked={selectedValue === "Friends"}
-                    onChange={() => handleRadioChange("Friends")}
-                  />
+                  <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                    <input
+                      id="friends"
+                      type="radio"
+                      name="whereKnow"
+                      value="friends"
+                    />
 
-                  <i className="pl-2">Friends</i>
-                </label>
+                    <i className="pl-2">Friends</i>
+                  </label>
 
-                <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                  <input
-                    type="radio"
-                    id="foundMyself"
-                    value="FoundMysels"
-                    checked={selectedValue === "FoundMysels"}
-                    onChange={() => handleRadioChange("FoundMysels")}
-                  />
-                  <i className="pl-2">Found myself</i>
-                </label>
+                  <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                    <input
+                      id="foundMyself"
+                      type="radio"
+                      name="whereKnow"
+                      value="found myself"
+                    />
+                    <i className="pl-2">Found myself</i>
+                  </label>
+                </fieldset>
               </div>
             </div>
-            <button className="border-2 text-md mt-5 rounded-md py-2 px-4 bg-blue-600 hover:bg-blue-700 text-gray-100 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <button
+              type="submit"
+              className="border-2 text-md mt-5 rounded-md py-2 px-4 bg-blue-600 hover:bg-blue-700 text-gray-100 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600"
+            >
               Registration
             </button>
           </form>

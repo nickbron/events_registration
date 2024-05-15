@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Events {
+  id          String           @id @default(cuid())
+  userId      String           @map("user_id")
+  title       String           @db.VarChar(255)
+  description String?
+  organizer   String
+  eventDate   DateTime
+  user        UserRegistration @relation(fields: [userId], references: [id])
+}
+
+model UserRegistration {
+  id        String         @id @default(cuid())
+  firstName String
+  lastName  String
+  email     String
+  birthday  DateTime
+  created   DateTime       @default(now())
+  whereKnow WereKnowStatus @default(SocialMedia)
+  events    Events[]
+}
+
+enum WereKnowStatus {
+  SocialMedia
+  Friends
+  FoundMySelf
+}
