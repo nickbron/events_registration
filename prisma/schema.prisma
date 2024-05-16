@@ -12,13 +12,12 @@ datasource db {
 }
 
 model Events {
-  id          String           @id @default(cuid())
-  userId      String           @map("user_id")
-  title       String           @db.VarChar(255)
-  description String?
-  organizer   String
-  eventDate   DateTime
-  user        UserRegistration @relation(fields: [userId], references: [id])
+  id               String             @id @default(cuid())
+  title            String             @db.VarChar(255)
+  description      String?
+  organizer        String
+  eventDate        DateTime
+  UserRegistration UserRegistration[]
 }
 
 model UserRegistration {
@@ -29,7 +28,7 @@ model UserRegistration {
   birthday  DateTime
   created   DateTime       @default(now())
   whereKnow WereKnowStatus @default(SocialMedia)
-  events    Events[]
+  id_event  Events         @relation(fields: [id], references: [id])
 }
 
 enum WereKnowStatus {
