@@ -23,6 +23,9 @@ export default function ViewPage() {
 
   return (
     <>
+      <h1 className="text-black text-center pt-8 font-light text-4xl md:text-5xl lg:text-6xl">
+        List of registered participants
+      </h1>
       {participants &&
         participants.map(
           ({

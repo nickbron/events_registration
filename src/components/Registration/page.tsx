@@ -18,7 +18,7 @@ export default function Registration() {
 
           <form className="flex flex-col items-center">
             <div className="md:w-3/4 lg:w-2/3 xl:w-1/2">
-              <div className="flex flex-col md:flex-row">
+              <div className="flex flex-col md:flex-row ">
                 <input
                   id="firstName"
                   name="firstName"
@@ -31,7 +31,7 @@ export default function Registration() {
                   name="lastName"
                   type="text"
                   placeholder="Last Name"
-                  className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full outline-none focus:ring-2 focus:ring-blue-600"
+                  className="my-2 py-2 px-4   rounded-md bg-gray-900 text-gray-300 w-full outline-none focus:ring-2 focus:ring-blue-600"
                 />
                 <input
                   id="email"
@@ -48,6 +48,7 @@ export default function Registration() {
                   className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full md:w-1/2 md:ml-2 outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
+
               <h3 className="text-white text-center pt-8 font-light text-1xl md:text-3xl lg:text-3xl">
                 Where did you hear about this event?
               </h3>

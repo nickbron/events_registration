@@ -25,6 +25,9 @@ export default function Event() {
 
   return (
     <>
+      <h1 className="text-black text-center pt-8 font-light text-4xl md:text-5xl lg:text-6xl">
+        Events
+      </h1>
       {events &&
         events.map(
           (event: {
@@ -68,7 +71,7 @@ export default function Event() {
                     <div className="flex flex-row justify-between flex-grow">
                       <a
                         href={`registration/event?id=${event.id}`}
-                        className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center"
+                        className="mt-3 text-black dark:text-cyan-600 hover:text-blue-600 inline-flex items-center"
                       >
                         Registration Form
                         <svg
@@ -84,9 +87,8 @@ export default function Event() {
                         </svg>
                       </a>
                       <a
-                        // href="/view"
                         href={`view/event?id=${event.id}`}
-                        className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center"
+                        className="mt-3 text-black dark:text-cyan-600 hover:text-blue-600 inline-flex items-center"
                       >
                         View
                         <svg
