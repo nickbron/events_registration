@@ -2,6 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import { getParticipants } from "@/app/registration/actions";
 import { Key, ReactNode, useEffect, useState } from "react";
+import { format } from "date-fns";
 
 export default function ViewPage() {
   const searchParams = useSearchParams();
@@ -37,14 +38,14 @@ export default function ViewPage() {
             firstName: ReactNode;
             lastName: ReactNode;
             email: ReactNode;
-            birthday: ReactNode;
+            birthday: Date;
             whereKnow: ReactNode;
-            created: ReactNode;
+            created: Date;
           }) => (
             <div key={id} className="flex flex-wrap justify-center mt-10 ">
               <div className="p-4 max-w-sm">
                 <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
-                  <div className="flex flex-row justify-between mb-3">
+                  <div className="flex flex-row justify-around mb-3">
                     <h2 className="text-white dark:text-white text-lg font-medium">
                       {firstName}
                     </h2>
@@ -54,13 +55,13 @@ export default function ViewPage() {
                   </div>
                   <div className="flex flex-col justify-between flex-grow">
                     <h2 className="text-white dark:text-white text-lg font-light">
-                      {birthday}
+                      {format(birthday, "MM/dd/yyyy")}
                     </h2>
                     <p className="leading-relaxed text-base text-white dark:text-gray-300">
                       {email}
                     </p>
                     <p className="leading-relaxed text-base text-white dark:text-gray-300">
-                      {created}
+                      date of registration: {format(created, "dd/MM/yyyy")}
                     </p>
                   </div>
                 </div>

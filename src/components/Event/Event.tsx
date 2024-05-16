@@ -1,6 +1,7 @@
 "use client";
 import { getEvents } from "@/app/registration/actions";
 import { Key, ReactNode, useEffect, useState } from "react";
+import { format } from "date-fns";
 
 export default function Event() {
   const initialState = {
@@ -28,7 +29,7 @@ export default function Event() {
         events.map(
           (event: {
             description: ReactNode;
-            eventDate: ReactNode;
+            eventDate: Date;
             title: ReactNode;
             id: Key | null | undefined;
           }) => (
@@ -56,7 +57,8 @@ export default function Event() {
                       {event.title}
                     </h2>
                     <h2 className="text-white dark:text-white text-lg font-light">
-                      {event.eventDate}
+                      {/* {event.eventDate} */}
+                      {format(event.eventDate, "MM/dd/yyyy")}
                     </h2>
                   </div>
                   <div className="flex flex-col justify-between flex-grow">
