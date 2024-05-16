@@ -1,14 +1,24 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { getParticipants } from "@/app/registration/actions";
-import { useEffect, useState } from "react";
+import { Key, ReactNode, useEffect, useState } from "react";
+
+interface IParticipant {
+  id?: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  birthday: string;
+  whereKnow: string;
+  created: Date;
+}
 
 export default function ViewPage() {
   const searchParams = useSearchParams();
   const idEvent = searchParams.get("id");
   // const participants = getParticipants(idEvent);
 
-  const [participants, setParticipants] = useState(null);
+  const [participants, setParticipants] = useState<any | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -33,6 +43,14 @@ export default function ViewPage() {
             birthday,
             whereKnow,
             created,
+          }: {
+            id: Key | null | undefined;
+            firstName: ReactNode;
+            lastName: ReactNode;
+            email: ReactNode;
+            birthday: ReactNode;
+            whereKnow: ReactNode;
+            created: ReactNode;
           }) => (
             <div key={id} className="flex flex-wrap justify-center mt-10 ">
               <div className="p-4 max-w-sm">
