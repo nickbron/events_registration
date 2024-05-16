@@ -3,20 +3,9 @@ import { useSearchParams } from "next/navigation";
 import { getParticipants } from "@/app/registration/actions";
 import { Key, ReactNode, useEffect, useState } from "react";
 
-interface IParticipant {
-  id?: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  birthday: string;
-  whereKnow: string;
-  created: Date;
-}
-
 export default function ViewPage() {
   const searchParams = useSearchParams();
   const idEvent = searchParams.get("id");
-  // const participants = getParticipants(idEvent);
 
   const [participants, setParticipants] = useState<any | null>(null);
 

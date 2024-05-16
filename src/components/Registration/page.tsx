@@ -1,20 +1,8 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { addRegistration } from "@/app/registration/actions";
-import * as yup from "yup";
 
 export default function Registration() {
-  // const validationSchema = yup.object({
-  //   firstName: yup.string().defined().required("Required"),
-  //   lastName: yup.string().defined().required("Required"),
-  //   email: yup.string().nullable().email("Enter a valid email"),
-  //   birthDate: yup
-  //     .date()
-  //     .nullable()
-  //     .min(new Date(1900, 0, 1))
-  //     .required("Required"),
-  //   whereKnow: yup.string().required("Required"),
-  // });
   const searchParams = useSearchParams();
   const idEvent = searchParams.get("id");
 

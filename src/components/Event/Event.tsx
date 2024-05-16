@@ -2,14 +2,6 @@
 import { getEvents } from "@/app/registration/actions";
 import { Key, ReactNode, useEffect, useState } from "react";
 
-interface IEvent {
-  id?: string;
-  title: string;
-  description: string;
-  organizer: string;
-  eventDate?: Date;
-}
-
 export default function Event() {
   const initialState = {
     id: "",
