@@ -1,34 +1,33 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Events {
-  id               String             @id @default(cuid())
-  title            String             @db.VarChar(255)
-  description      String?
-  organizer        String
-  eventDate        DateTime
-  UserRegistration UserRegistration[]
+  id          String         @id @default(cuid())
+  title       String         @db.VarChar(255)
+  description String?
+  organizer   String
+  eventDate   DateTime
+  userId      Registartion[]
 }
 
-model UserRegistration {
+model Registartion {
   id        String         @id @default(cuid())
   firstName String
   lastName  String
-  email     String
+  email     String         @unique
   birthday  DateTime
-  created   DateTime       @default(now())
-  whereKnow WereKnowStatus @default(SocialMedia)
-  id_event  Events         @relation(fields: [id], references: [id])
+  created   DateTime       @updatedAt
+  whereKnow WereKnowStatus @default(Friends)
+  events    Events?        @relation(fields: [eventsId], references: [id])
+  eventsId  String?
 }
 
 enum WereKnowStatus {

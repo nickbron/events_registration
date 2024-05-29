@@ -2,9 +2,14 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import prisma from "@/lib/prisma";
 
 export async function addRegistration(idEvent: any, formData: FormData) {
   const supabase = createClient();
+  // const {
+  //   duser: { user },
+  // } = await supabase.auth.getUser();
+  // console.log("USERID:", user);
   const data = {
     firstName: formData.get("firstName") as string,
     lastName: formData.get("lastName") as string,
@@ -24,14 +29,20 @@ export async function addRegistration(idEvent: any, formData: FormData) {
 }
 
 export async function getEvents() {
-  const supabase = createClient();
+  // const supabase = createClient();
 
-  const { data, error } = await supabase.from("Events").select("*");
-
-  if (error) {
-    redirect("/error");
-  }
-  return { data, error };
+  // const { data, error } = await supabase.from("Events").select("*");
+  // console.log("data:", data);
+  // if (error) {
+  //   redirect("/error");
+  // }
+  const data = await prisma.events.findMany({
+    orderBy: {
+      eventDate: "desc",
+    },
+  });
+  console.log("DATAprisma:", data);
+  return data;
 }
 
 export async function getParticipants(idEvent: any) {
