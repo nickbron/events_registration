@@ -4,21 +4,21 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 model Events {
-  id          String         @id @default(cuid())
-  title       String         @db.VarChar(255)
-  description String?
-  organizer   String
-  eventDate   DateTime
-  userId      Registartion[]
+  id               String         @id @default(cuid())
+  title            String         @db.VarChar(255)
+  description      String?
+  organizer        String
+  eventDate        DateTime
+  userRegistration Registration[]
 }
 
-model Registartion {
+model Registration {
   id        String         @id @default(cuid())
   firstName String
   lastName  String
