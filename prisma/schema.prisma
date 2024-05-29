@@ -15,7 +15,7 @@ model Events {
     description      String?
     organizer        String
     eventDate        DateTime
-    userRegistration Registration[]
+    UserRegistration Registration[]
 }
 
 model Registration {
