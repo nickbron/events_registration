@@ -1,14 +1,16 @@
-/*
-  Warnings:
+-- CreateEnum
+CREATE TYPE "WereKnowStatus" AS ENUM ('SocialMedia', 'Friends', 'FoundMySelf');
 
-  - You are about to drop the `Registartion` table. If the table is not empty, all the data it contains will be lost.
+-- CreateTable
+CREATE TABLE "Events" (
+    "id" TEXT NOT NULL,
+    "title" VARCHAR(255) NOT NULL,
+    "description" TEXT,
+    "organizer" TEXT NOT NULL,
+    "eventDate" TIMESTAMP(3) NOT NULL,
 
-*/
--- DropForeignKey
-ALTER TABLE "Registartion" DROP CONSTRAINT "Registartion_eventsId_fkey";
-
--- DropTable
-DROP TABLE "Registartion";
+    CONSTRAINT "Events_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Registration" (
