@@ -1,12 +1,10 @@
-import { Events, Registartion } from "@prisma/client";
-
 export type whereKnowType = "SocialMedia" | " Friends" | "FoundMySelf";
 
 export interface IEvents {
   id: string;
   title: string;
   description: string | null;
-  organizer: String;
+  organizer: string;
   eventDate: Date;
   userId?: Array<IRegistartion>;
 }

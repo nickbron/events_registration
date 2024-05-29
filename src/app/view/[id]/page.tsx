@@ -1,32 +1,30 @@
-"use client";
-import { useSearchParams } from "next/navigation";
-import { getParticipants } from "@/app/registration/actions";
-import { Key, ReactNode, useEffect, useState } from "react";
-import { format } from "date-fns";
+'use client'
+// import { useSearchParams } from "next/navigation";
+// import { getParticipants } from "@/app/registration/actions";
+// import { Key, ReactNode, useEffect, useState } from "react";
+// import { format } from "date-fns";
 
 export default function ViewPage() {
-  const searchParams = useSearchParams();
-  const idEvent = searchParams.get("id");
+    // const searchParams = useSearchParams();
+    // const idEvent = searchParams.get("id");
 
-  const [participants, setParticipants] = useState<any | null>(null);
+    // const [participants, setParticipants] = useState<any | null>(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      const { data, error } = await getParticipants(idEvent);
-      if (data) {
-        setParticipants(data);
-      }
-    }
-    fetchData();
-  }, []);
-  console.log("participants:", participants);
+    // useEffect(() => {
+    //   async function fetchData() {
+    //     const { data, error } = await getParticipants(idEvent);
+    //     if (data) {
+    //       setParticipants(data);
+    //     }
+    //   }
+    //   fetchData();
+    // }, []);
+    // console.log("participants:", participants);
 
-  return (
-    <>
-      <h1 className="text-black text-center pt-8 font-light text-4xl md:text-5xl lg:text-6xl">
-        List of registered participants
-      </h1>
-      {participants &&
+    return (
+        <>
+            <h1 className="text-black text-center pt-8 font-light text-4xl md:text-5xl lg:text-6xl">List of registered participants</h1>
+            {/* {participants &&
         participants.map(
           ({
             id,
@@ -71,7 +69,7 @@ export default function ViewPage() {
               </div>
             </div>
           )
-        )}
-    </>
-  );
+        )} */}
+        </>
+    )
 }

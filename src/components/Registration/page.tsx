@@ -1,22 +1,20 @@
-"use client";
-import { useSearchParams } from "next/navigation";
-import { addRegistration } from "@/app/registration/actions";
+'use client'
+// import { useSearchParams } from "next/navigation";
+// import { addRegistration } from "@/app/registration/actions";
 
 export default function Registration() {
-  const searchParams = useSearchParams();
-  const idEvent = searchParams.get("id");
+    // const searchParams = useSearchParams();
+    // const idEvent = searchParams.get("id");
 
-  const updateEventId = addRegistration.bind(null, idEvent);
+    // const updateEventId = addRegistration.bind(null, idEvent);
 
-  return (
-    <div className="h-screen bg-gray-800">
-      <div className="pt-10 md:pt-20">
-        <div className="p-4 md:p-8">
-          <h1 className="text-white text-center pb-8 font-light text-4xl md:text-5xl lg:text-6xl">
-            Registration
-          </h1>
+    return (
+        <div className="h-screen bg-gray-800">
+            <div className="pt-10 md:pt-20">
+                <div className="p-4 md:p-8">
+                    <h1 className="text-white text-center pb-8 font-light text-4xl md:text-5xl lg:text-6xl">Registration</h1>
 
-          <form className="flex flex-col items-center">
+                    {/* <form className="flex flex-col items-center">
             <div className="md:w-3/4 lg:w-2/3 xl:w-1/2">
               <div className="flex flex-col md:flex-row ">
                 <input
@@ -93,9 +91,9 @@ export default function Registration() {
             >
               Registration
             </button>
-          </form>
+          </form> */}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    )
 }
