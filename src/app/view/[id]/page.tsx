@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 // import { useSearchParams } from "next/navigation";
 // import { getParticipants } from "@/app/registration/actions";
 // import { Key, ReactNode, useEffect, useState } from "react";
