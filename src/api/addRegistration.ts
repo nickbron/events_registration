@@ -1,25 +1,25 @@
+'use server'
+import { whereKnowType } from './../models'
+import { PrismaClient } from '@prisma/client'
 import { redirect } from 'next/navigation'
 
-export async function addRegistration(idEvent: string, formData: FormData) {
-    //   const supabase = createClient();
-    // const {
-    //   duser: { user },
-    // } = await supabase.auth.getUser();
-    // console.log("USERID:", user);
-    const data = {
-        firstName: formData.get('firstName') as string,
-        lastName: formData.get('lastName') as string,
-        email: formData.get('email') as string,
-        birthday: formData.get('birthday'),
-        whereKnow: formData.get('whereKnow') as string,
-        id_event: idEvent,
+const prisma = new PrismaClient()
+
+export async function addRegistration(idEvent: string | null, formData: FormData) {
+    try {
+        const user = await prisma.registration.create({
+            data: {
+                firstName: formData.get('firstName') as string,
+                lastName: formData.get('lastName') as string,
+                email: formData.get('email') as string,
+                birthday: new Date(formData.get('birthday') as string) as Date,
+                whereKnow: formData.get('whereKnow') as whereKnowType,
+                eventsId: idEvent as string,
+            },
+        })
+        console.log('USER:', user)
+    } catch (e) {
+        console.error('ERROR:', e)
     }
-    console.log('DATA:', data)
-
-    //   const { error } = await supabase.from("UserRegistration").insert(data);
     redirect('/')
-
-    //   if (error) {
-    //     redirect("/error");
-    //   }
 }

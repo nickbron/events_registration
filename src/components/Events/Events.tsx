@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { IEvents } from '@/models'
 
-export default function Event({ data }: { data: Array<IEvents> }) {
+export default function Events({ data }: { data: Array<IEvents> }) {
     return (
         <>
             <div className="text-center p-10">

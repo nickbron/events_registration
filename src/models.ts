@@ -1,4 +1,4 @@
-export type whereKnowType = 'SocialMedia' | ' Friends' | 'FoundMySelf'
+export type whereKnowType = 'SocialMedia' | 'Friends' | 'FoundMySelf'
 
 export interface IEvents {
     id: string

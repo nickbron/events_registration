@@ -1,12 +1,12 @@
 'use client'
-// import { useSearchParams } from 'next/navigation'
-// import { addRegistration } from '@/api/addRegistration'
+import { useSearchParams } from 'next/navigation'
+import { addRegistration } from '@/api/addRegistration'
 
-export default function Registration() {
-    // const searchParams = useSearchParams()
-    // const idEvent = searchParams.get('id')
+export default function RegistrationForm() {
+    const searchParams = useSearchParams()
+    const idEvent = searchParams.get('id')
 
-    // const updateEventId = addRegistration.bind(null, idEvent)
+    const updateEventId = addRegistration.bind(null, idEvent)
 
     return (
         <div className="h-screen bg-gray-800">
@@ -53,25 +53,25 @@ export default function Registration() {
                             <div>
                                 <fieldset>
                                     <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                        <input id="socialMedia" type="radio" name="whereKnow" value="socialMedia" />
+                                        <input id="socialMedia" type="radio" name="whereKnow" value="SocialMedia" />
                                         <i className="pl-2">Social media</i>
                                     </label>
 
                                     <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                        <input id="friends" type="radio" name="whereKnow" value="friends" />
+                                        <input id="friends" type="radio" name="whereKnow" value="Friends" />
 
                                         <i className="pl-2">Friends</i>
                                     </label>
 
                                     <label className="flex bg-gray-900 text-gray-300 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                        <input id="foundMyself" type="radio" name="whereKnow" value="found myself" />
+                                        <input id="foundMyself" type="radio" name="whereKnow" value="FoundMySelf" />
                                         <i className="pl-2">Found myself</i>
                                     </label>
                                 </fieldset>
                             </div>
                         </div>
                         <button
-                            formAction={'updateEventId'}
+                            formAction={updateEventId}
                             className="border-2 text-md mt-5 rounded-md py-2 px-4 bg-blue-600 hover:bg-blue-700 text-gray-100 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600"
                         >
                             Registration

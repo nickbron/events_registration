@@ -1,11 +1,10 @@
 import { getEvents } from '@/api/getEvents'
-import Event from '@/components/Event/Event'
-
-const getData = () => getEvents()
+import Events from '@/components/Events/Events'
 
 export default async function Home() {
-    const data = await getData()
+    const data = await getEvents()
+
     console.log('GETDATA:', data)
 
-    return <Event data={data} />
+    return <Events data={data} />
 }
