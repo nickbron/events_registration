@@ -1,46 +1,54 @@
-// import { redirect } from 'next/navigation'
-// import { createClient } from "@/utils/supabase/server";
-import prisma from '@/lib/prisma'
+import { PrismaClient } from '@prisma/client'
 
-// export async function addRegistration(idEvent: any, formData: FormData) {
-//   const supabase = createClient();
-//   // const {
-//   //   duser: { user },
-//   // } = await supabase.auth.getUser();
-//   // console.log("USERID:", user);
-//   const data = {
-//     firstName: formData.get("firstName") as string,
-//     lastName: formData.get("lastName") as string,
-//     email: formData.get("email") as string,
-//     birthday: formData.get("birthday"),
-//     whereKnow: formData.get("whereKnow") as string,
-//     id_event: idEvent,
-//   };
-//   console.log("DATA:", data);
+const prisma = new PrismaClient()
+type eventType = {
+    title: string
+    description: string
+    eventDate: Date
+    organizer: string
+    image: string
+}
+type randomEventsType = {
+    name: string
+    promoter: { description: string; name: string }
+    dates: { start: { dateTime: Date } }
+    images: { url: string }[]
+}
 
-//   const { error } = await supabase.from("UserRegistration").insert(data);
-//   redirect("/");
+export async function getRandomEvents() {
+    const newEvents: eventType[] = []
+    const API_KEY = process.env.TICKETMASTER_KEY
+    const urlEvents = `https://app.ticketmaster.com/discovery/v2/events.json?page=1&apikey=${API_KEY}`
+    const result = await fetch(urlEvents).then((res) => res.json())
+    const events: randomEventsType[] = result?._embedded?.events
 
-//   if (error) {
-//     redirect("/error");
-//   }
-// }
+    try {
+        events.forEach((item) => {
+            newEvents.push({
+                title: item.name,
+                description: item.promoter.description,
+                eventDate: item.dates.start.dateTime,
+                organizer: item.promoter.name,
+                image: item.images[7].url,
+            })
+        })
+    } catch (error) {
+        console.log(error)
+    }
 
-export async function getEvents() {
-    // const supabase = createClient();
+    console.log('RESPONSE::', newEvents)
+    // addEvents(newEvents)
+}
 
-    // const { data, error } = await supabase.from("Events").select("*");
-    // console.log("data:", data);
-    // if (error) {
-    //   redirect("/error");
-    // }
-    const data = await prisma.events.findMany({
-        orderBy: {
-            eventDate: 'desc',
-        },
-    })
-    console.log('DATAprisma:', data)
-    return data
+export async function addEvents(item: eventType[]) {
+    try {
+        const event = await prisma.events.createMany({
+            data: item,
+        })
+        console.log('Event:', event)
+    } catch (e) {
+        console.error('ERROR:', e)
+    }
 }
 
 // export async function getParticipants(idEvent: any) {

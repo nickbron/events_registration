@@ -15,6 +15,7 @@ model Events {
   description      String?
   organizer        String
   eventDate        DateTime
+  image            String
   userRegistration Registration[]
 }
 

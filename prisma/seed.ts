@@ -7,6 +7,7 @@ async function main() {
             description: 'Party on the beach Mayami',
             organizer: 'Fox Group',
             eventDate: '2024-06-03T18:25:43.511Z',
+            image: '',
             userRegistration: {
                 create: {
                     firstName: 'Alise',
@@ -24,6 +25,7 @@ async function main() {
             description: 'React, Next and other',
             organizer: 'SoftServis',
             eventDate: '2024-06-10T18:25:43.511Z',
+            image: '',
             userRegistration: {
                 create: {
                     firstName: 'Alise',
@@ -41,6 +43,7 @@ async function main() {
             description: 'Tribute Show Rammstein з симфонічним оркестром у Києві!',
             organizer: 'Kontramarka.ua',
             eventDate: '2024-06-10T18:25:43.511Z',
+            image: '',
             userRegistration: {
                 create: {
                     firstName: 'Den',

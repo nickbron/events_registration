@@ -6,6 +6,7 @@ export interface IEvents {
     description: string | null
     organizer: string
     eventDate: Date
+    image?: string
     userId?: Array<IRegistartion>
 }
 
