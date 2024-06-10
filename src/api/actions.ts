@@ -20,7 +20,7 @@ export async function getRandomEvents() {
     const API_KEY = process.env.TICKETMASTER_KEY
     const urlEvents = `https://app.ticketmaster.com/discovery/v2/events.json?page=1&apikey=${API_KEY}`
     const result = await fetch(urlEvents).then((res) => res.json())
-    const events: randomEventsType[] = result?._embedded?.events
+    const events: randomEventsType[] = result._embedded.events
 
     try {
         events.forEach((item) => {
@@ -51,6 +51,21 @@ export async function addEvents(item: eventType[]) {
     }
 }
 
+export async function getParticipants(eventsId: string | null) {
+    try {
+        const participants = await prisma.registration.findMany({
+            where: {
+                eventsId,
+            },
+            orderBy: {
+                created: 'desc',
+            },
+        })
+        return participants
+    } catch (e) {
+        console.error('Error getParticipants:', e)
+    }
+}
 // export async function getParticipants(idEvent: any) {
 //   const supabase = createClient();
 

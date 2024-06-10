@@ -6,15 +6,16 @@ export interface IEvents {
     description: string | null
     organizer: string
     eventDate: Date
-    image?: string
+    image: string
     userId?: Array<IRegistartion>
 }
 
 export interface IRegistartion {
     id: string
     firstName: string
-    lastname: string
+    lastName: string
     email: string
     birthday: Date
     whereKnow: whereKnowType
+    created: Date
 }

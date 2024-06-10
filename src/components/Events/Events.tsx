@@ -1,12 +1,13 @@
 import { format } from 'date-fns'
 import { IEvents } from '@/models'
+import SearchBar from '@/components/SearchBar/SearchBar'
+import Image from 'next/image'
 
 export default function Events({ data }: { data: Array<IEvents> }) {
     return (
         <>
-            <div className="text-center p-10">
-                <h1 className="font-bold text-4xl mb-2">Events</h1>
-            </div>
+            <SearchBar />
+
             <section className="  grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 justify-items-center  gap-y-20 gap-x-14 m-5 ">
                 {data &&
                     data.map(({ id, title, description, eventDate, image }) => (
@@ -15,7 +16,7 @@ export default function Events({ data }: { data: Array<IEvents> }) {
                             className="w-full h-full  bg-white dark:bg-slate-800 rounded-lg  m-5 px-6 py-8 ring-1 ring-slate-900/5 shadow-x duration-500 hover:scale-105 hover:shadow-xl flex flex-col justify-between "
                         >
                             <div className=" ">
-                                <img className=" h-50 object-cover" src={image} alt="event image" />
+                                <Image src={image} alt="image of event" width={500} height={50} object-fit="cover" />
                             </div>
                             <div className="flex flex-row justify-evenly ">
                                 <h2 className="text-slate-900 dark:text-white text-lg font-medium">{title}</h2>
