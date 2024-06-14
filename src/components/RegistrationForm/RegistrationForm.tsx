@@ -1,6 +1,6 @@
 'use client'
+import { addRegistration } from '@/app/api/actions'
 import { useSearchParams } from 'next/navigation'
-import { addRegistration } from '@/api/addRegistration'
 
 export default function RegistrationForm() {
     const searchParams = useSearchParams()
@@ -39,7 +39,7 @@ export default function RegistrationForm() {
                                     placeholder="Email"
                                 />
                                 <input
-                                    id="birthDate"
+                                    id="birthday"
                                     name="birthday"
                                     type="date"
                                     placeholder="date of birth"

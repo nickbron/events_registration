@@ -7,10 +7,10 @@ export interface IEvents {
     organizer: string
     eventDate: Date
     image: string
-    userId?: Array<IRegistartion>
+    userId?: Array<IRegistration>
 }
 
-export interface IRegistartion {
+export interface IRegistration {
     id: string
     firstName: string
     lastName: string

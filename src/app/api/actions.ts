@@ -1,6 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '@/lib/prisma'
+import { whereKnowType } from '@/models'
+import { redirect } from 'next/navigation'
 
-const prisma = new PrismaClient()
 type eventType = {
     title: string
     description: string
@@ -13,6 +14,39 @@ type randomEventsType = {
     promoter: { description: string; name: string }
     dates: { start: { dateTime: Date } }
     images: { url: string }[]
+}
+
+export const getEvents = () =>
+    prisma.events.findMany({
+        orderBy: {
+            eventDate: 'desc',
+        },
+    })
+
+export async function addRegistration(idEvent: string | null, formData: FormData) {
+    try {
+        const body = new FormData()
+        body.append('firstName', formData.get('firstName') as string)
+        body.append('lastName', formData.get('lastName') as string)
+        body.append('email', formData.get('email') as string)
+        body.append('birthday', formData.get('birthday') as string)
+        body.append('whereKnow', formData.get('whereKnow') as whereKnowType)
+        body.append('eventsId', idEvent as string)
+
+        await fetch(`/api/eventRegistration/`, {
+            method: 'PUT',
+            body,
+        }).then((res) => {
+            console.log('res::', res)
+
+            if (!res.ok) {
+                throw new Error('REGISTRATION error')
+            }
+        })
+    } catch (e) {
+        console.error('create registration error:', e)
+    }
+    redirect('/')
 }
 
 export async function getRandomEvents() {
@@ -50,34 +84,3 @@ export async function addEvents(item: eventType[]) {
         console.error('ERROR:', e)
     }
 }
-
-export async function getParticipants(eventsId: string | null) {
-    try {
-        const participants = await prisma.registration.findMany({
-            where: {
-                eventsId,
-            },
-            orderBy: {
-                created: 'desc',
-            },
-        })
-        return participants
-    } catch (e) {
-        console.error('Error getParticipants:', e)
-    }
-}
-// export async function getParticipants(idEvent: any) {
-//   const supabase = createClient();
-
-//   const { data, error } = await supabase
-//     .from("UserRegistration")
-//     .select("*")
-//     .in("id_event", [idEvent])
-//     .order("created", { ascending: false });
-
-//   console.log("DAAAAA", data);
-//   if (error) {
-//     redirect("/error");
-//   }
-//   return { data, error };
-// }

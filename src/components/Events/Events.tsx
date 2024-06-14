@@ -46,6 +46,7 @@ export default function Events({ data }: { data: Array<IEvents> }) {
                                 </a>
                                 <a
                                     href={`view/event?id=${id}`}
+                                    // href={`api/participants/?id=${id}`}
                                     className="mt-3 text-black dark:text-cyan-600 hover:text-blue-600 inline-flex items-center"
                                 >
                                     View

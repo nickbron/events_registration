@@ -1,7 +1,7 @@
-import { IRegistartion } from '@/models'
+import { IRegistration } from '@/models'
 import { format } from 'date-fns'
 
-export default function ListPartisipants({ data }: { data: Array<IRegistartion> }) {
+export default function ListPartisipants({ data }: { data: Array<IRegistration> }) {
     console.log('PARTICIPANTS::', data)
     return (
         <>
