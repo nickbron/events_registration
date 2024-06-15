@@ -23,7 +23,7 @@ export default function ViewPage() {
 
     console.log('DATA:', data)
     if (isLoading) return <p>Loading...</p>
-    if (!data) return <p>No profile data</p>
+    if (!data.length) return <p>No profile data</p>
 
     return (
         <>

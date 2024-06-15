@@ -21,7 +21,7 @@ export default function Events({ data }: { data: Array<IEvents> }) {
                             <div className="flex flex-row justify-evenly ">
                                 <h2 className="text-slate-900 dark:text-white text-lg font-medium">{title}</h2>
                                 <h2 className="text-slate-500 dark:text-slate-400 text-lg font-light pl-5 text-nowrap">
-                                    {format(eventDate, "MM/dd/yyyy HH':'mm")}
+                                    {format(eventDate, "dd/MM/yyyy HH':'mm")}
                                 </h2>
                             </div>
 

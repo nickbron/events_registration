@@ -23,6 +23,18 @@ export const getEvents = () =>
         },
     })
 
+export async function getParticipants(idEvent: string) {
+    try {
+        const res = await fetch(`/api/participants?id=${idEvent}`)
+        if (!res.ok) {
+            throw new Error('Get Participants error')
+        }
+        return res.json()
+    } catch (error) {
+        console.error('get Participants error:', error)
+    }
+}
+
 export async function addRegistration(idEvent: string | null, formData: FormData) {
     try {
         const body = new FormData()
