@@ -5,7 +5,7 @@ export async function GET() {
     try {
         const events = await prisma.events.findMany({
             orderBy: {
-                eventDate: 'desc',
+                eventDate: 'asc',
             },
         })
         if (!events) {
@@ -16,5 +16,3 @@ export async function GET() {
         return NextResponse.error()
     }
 }
-
-// export const revalidate = 60

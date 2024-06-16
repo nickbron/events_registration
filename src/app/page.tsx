@@ -13,7 +13,7 @@ export default function Home() {
 
     useEffect(() => {
         async function fetchEvents() {
-            const response = await fetch(url)
+            const response = await fetch(url, { next: { revalidate: 3600 } })
             const events = await response.json()
             setEvents(events)
         }
@@ -28,5 +28,3 @@ export default function Home() {
         </>
     )
 }
-
-// export const revalidate = 60
