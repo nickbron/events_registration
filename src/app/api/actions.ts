@@ -1,4 +1,5 @@
 import prisma from '@/lib/prisma'
+// import { z } from 'zod'
 import { whereKnowType } from '@/models'
 import { redirect } from 'next/navigation'
 
@@ -16,13 +17,33 @@ type randomEventsType = {
     images: { url: string }[]
 }
 
-export const getEvents = () =>
-    prisma.events.findMany({
-        orderBy: {
-            eventDate: 'desc',
-        },
-    })
+// export const getEvents = () =>
+//     prisma.events.findMany({
+//         orderBy: {
+//             eventDate: 'desc',
+//         },
+//     })
 
+// export async function getEvents() {
+//     const res = await fetch(`/api/events`)
+//     if (!res.ok) {
+//         throw new Error('Get Events error')
+//     }
+
+//     return res.json()
+// }
+
+export async function getEventsByTitle(title: string) {
+    try {
+        const res = await fetch(`/api/findEvents?q=${title}`)
+        if (!res.ok) {
+            throw new Error('Get Events error')
+        }
+        return res.json()
+    } catch (error) {
+        console.error('get Events error:', error)
+    }
+}
 export async function getParticipants(idEvent: string) {
     try {
         const res = await fetch(`/api/participants?id=${idEvent}`)
@@ -44,19 +65,17 @@ export async function addRegistration(idEvent: string | null, formData: FormData
         body.append('birthday', formData.get('birthday') as string)
         body.append('whereKnow', formData.get('whereKnow') as whereKnowType)
         body.append('eventsId', idEvent as string)
-
         await fetch(`/api/eventRegistration/`, {
             method: 'PUT',
             body,
         }).then((res) => {
             console.log('res::', res)
-
             if (!res.ok) {
                 throw new Error('REGISTRATION error')
             }
         })
     } catch (e) {
-        console.error('create registration error:', e)
+        console.error('create registration error:', e), { status: 400 }
     }
     redirect('/')
 }

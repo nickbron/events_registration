@@ -21,6 +21,7 @@ export default function RegistrationForm() {
                                     id="firstName"
                                     name="firstName"
                                     type="text"
+                                    required
                                     placeholder="First Name"
                                     className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full outline-none focus:ring-2 focus:ring-blue-600"
                                 />
@@ -28,6 +29,7 @@ export default function RegistrationForm() {
                                     id="lastName"
                                     name="lastName"
                                     type="text"
+                                    required
                                     placeholder="Last Name"
                                     className="my-2 py-2 px-4   rounded-md bg-gray-900 text-gray-300 w-full outline-none focus:ring-2 focus:ring-blue-600"
                                 />
@@ -35,6 +37,7 @@ export default function RegistrationForm() {
                                     id="email"
                                     name="email"
                                     type="email"
+                                    required
                                     className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full md:w-1/2 md:ml-2 outline-none focus:ring-2 focus:ring-blue-600"
                                     placeholder="Email"
                                 />
@@ -42,6 +45,7 @@ export default function RegistrationForm() {
                                     id="birthday"
                                     name="birthday"
                                     type="date"
+                                    required
                                     placeholder="date of birth"
                                     className="my-2 py-2 px-4 rounded-md bg-gray-900 text-gray-300 w-full md:w-1/2 md:ml-2 outline-none focus:ring-2 focus:ring-blue-600"
                                 />

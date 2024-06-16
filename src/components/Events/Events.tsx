@@ -1,13 +1,11 @@
 import { format } from 'date-fns'
 import { IEvents } from '@/models'
-import SearchBar from '@/components/SearchBar/SearchBar'
+
 import Image from 'next/image'
 
 export default function Events({ data }: { data: Array<IEvents> }) {
     return (
         <>
-            <SearchBar />
-
             <section className="  grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 justify-items-center  gap-y-20 gap-x-14 m-5 ">
                 {data &&
                     data.map(({ id, title, description, eventDate, image }) => (
@@ -46,7 +44,6 @@ export default function Events({ data }: { data: Array<IEvents> }) {
                                 </a>
                                 <a
                                     href={`view/event?id=${id}`}
-                                    // href={`api/participants/?id=${id}`}
                                     className="mt-3 text-black dark:text-cyan-600 hover:text-blue-600 inline-flex items-center"
                                 >
                                     View

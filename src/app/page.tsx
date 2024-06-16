@@ -1,10 +1,32 @@
+'use client'
 import Events from '@/components/Events/Events'
-import { getEvents } from './api/actions'
+import SearchBar from '@/components/SearchBar/SearchBar'
+import { useEffect, useState } from 'react'
 
-export default async function Home() {
-    const data = await getEvents()
+export default function Home() {
+    const [events, setEvents] = useState([])
+    const [url, setUrl] = useState('/api/events')
 
-    return <Events data={data} />
+    const handleSearch = (value: string) => {
+        setUrl(`/api/findEvents?q=${value}`)
+    }
+
+    useEffect(() => {
+        async function fetchEvents() {
+            const response = await fetch(url)
+            const events = await response.json()
+            setEvents(events)
+        }
+        fetchEvents()
+    }, [url])
+
+    console.log('EVENTS:', events)
+    return (
+        <>
+            <SearchBar onSearch={handleSearch} />
+            <Events data={events} />
+        </>
+    )
 }
 
-export const revalidate = 60
+// export const revalidate = 60

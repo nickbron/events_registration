@@ -2,7 +2,6 @@ import { IRegistration } from '@/models'
 import { format } from 'date-fns'
 
 export default function ListPartisipants({ data }: { data: Array<IRegistration> }) {
-    console.log('PARTICIPANTS::', data)
     return (
         <>
             <section className="  grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 justify-items-center  gap-y-5 gap-x-14 m-5 ">

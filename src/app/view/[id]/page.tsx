@@ -4,6 +4,7 @@ import ListPartisipants from '@/components/ListParticipants/ListPartisipants'
 
 import { useEffect, useState } from 'react'
 import { IRegistration } from '@/models'
+import Loading from '@/app/loading'
 
 export default function ViewPage() {
     const searchParams = useSearchParams()
@@ -21,8 +22,7 @@ export default function ViewPage() {
             })
     }, [idEvent])
 
-    console.log('DATA:', data)
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <Loading />
     if (!data.length) return <p>No profile data</p>
 
     return (

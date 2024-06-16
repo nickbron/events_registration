@@ -1,8 +1,9 @@
 import prisma from '@/lib/prisma'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET(req: Request) {
-    const { searchParams } = new URL(req.url)
+export async function GET(req: NextRequest) {
+    // const { searchParams } = new URL(req.url)
+    const searchParams = req.nextUrl.searchParams
     const idEvent = searchParams.get('id')
     try {
         const participants = await prisma.registration.findMany({
