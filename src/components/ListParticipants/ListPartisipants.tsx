@@ -1,5 +1,5 @@
 import { IRegistration } from '@/models'
-import { differenceInYears, format, parse } from 'date-fns'
+import { differenceInYears, format } from 'date-fns'
 
 function calculateAge(birthday: Date) {
     const age = differenceInYears(new Date(), birthday)
@@ -23,7 +23,7 @@ export default function ListPartisipants({ data }: { data: Array<IRegistration> 
                     </thead>
                     <tbody>
                         {data.map(({ id, firstName, lastName, email, birthday, created, whereKnow }, i) => (
-                            <tr>
+                            <tr key={id}>
                                 <td className="border px-4 py-2">{i + 1}</td>
                                 <td className="border px-4 py-2">
                                     {firstName} {lastName}
