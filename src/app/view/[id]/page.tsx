@@ -23,15 +23,15 @@ export default function ViewPage() {
     }, [idEvent])
 
     if (isLoading) return <Loading />
-    if (!data.length) return <p>No profile data</p>
+    // if (!data.length) return <p>No profile data</p>
 
     return (
         <>
             {data.length ? (
                 <>
-                    <div className="bg-gray-100 py-2 px-4">
+                    {/* <div className="bg-gray-100 py-2 px-4">
                         <p className="text-2xl md:text-4xl font-extrabold dark:text-slate-400">List of registered participants:</p>
-                    </div>
+                    </div> */}
                     <ListPartisipants data={data} />
                 </>
             ) : (

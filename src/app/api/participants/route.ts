@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
                 eventsId: idEvent,
             },
             orderBy: {
-                created: 'desc',
+                created: 'asc',
             },
         })
         if (!participants) {

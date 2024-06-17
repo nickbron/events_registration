@@ -2,6 +2,7 @@
 import Events from '@/components/Events/Events'
 import SearchBar from '@/components/SearchBar/SearchBar'
 import { useEffect, useState } from 'react'
+import { getRandomEvents } from './api/actions'
 
 export default function Home() {
     const [events, setEvents] = useState([])

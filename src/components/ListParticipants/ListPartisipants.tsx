@@ -1,28 +1,42 @@
 import { IRegistration } from '@/models'
-import { format } from 'date-fns'
+import { differenceInYears, format, parse } from 'date-fns'
 
+function calculateAge(birthday: Date) {
+    const age = differenceInYears(new Date(), birthday)
+    return age
+}
 export default function ListPartisipants({ data }: { data: Array<IRegistration> }) {
     return (
         <>
-            <section className="  grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 justify-items-center  gap-y-5 gap-x-14 m-5 ">
-                {data.map(({ id, firstName, lastName, email, created }, i) => (
-                    <div key={id} className=" dark:bg-slate-800  bg-white shadow-md rounded-md overflow-hidden w-full h-full ">
-                        <ul className="divide-y divide-gray-200">
-                            <li className="flex items-center py-4 px-6">
-                                <span className="dark:text-slate-400 text-gray-700 text-lg font-medium mr-4">{i + 1}</span>
-
-                                <div className="flex-1">
-                                    <h3 className="text-lg font-medium dark:text-slate-400 text-gray-800">
-                                        {firstName} {lastName}
-                                    </h3>
-                                    <p className="text-gray-600 text-base">{email}</p>
-                                </div>
-                                <span className="dark:text-slate-400 text-gray-700 text-lg font-medium mr-4">{format(created, 'dd/MM/yyyy')}</span>
-                            </li>
-                        </ul>
-                    </div>
-                ))}
-            </section>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <h2 className="text-2xl font-bold mb-4">List of registered participants:</h2>
+                <table className="table-auto w-full">
+                    <thead>
+                        <tr>
+                            <th className="px-4 py-2"></th>
+                            <th className="px-4 py-2">Name</th>
+                            <th className="px-4 py-2">Email</th>
+                            <th className="px-4 py-2">Age</th>
+                            <th className="px-4 py-2">Where Know</th>
+                            <th className="px-4 py-2">Date registration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map(({ id, firstName, lastName, email, birthday, created, whereKnow }, i) => (
+                            <tr>
+                                <td className="border px-4 py-2">{i + 1}</td>
+                                <td className="border px-4 py-2">
+                                    {firstName} {lastName}
+                                </td>
+                                <td className="border px-4 py-2">{email}</td>
+                                <td className="border px-4 py-2">{calculateAge(birthday)}</td>
+                                <td className="border px-4 py-2">{whereKnow}</td>
+                                <td className="border px-4 py-2">{format(created, 'dd/MM/yyyy')}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </>
     )
 }

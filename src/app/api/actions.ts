@@ -83,7 +83,7 @@ export async function addRegistration(idEvent: string | null, formData: FormData
 export async function getRandomEvents() {
     const newEvents: eventType[] = []
     const API_KEY = process.env.TICKETMASTER_KEY
-    const urlEvents = `https://app.ticketmaster.com/discovery/v2/events.json?page=1&apikey=${API_KEY}`
+    const urlEvents = `https://app.ticketmaster.com/discovery/v2/events.json?page=1&startDateTime=2024-12-01T14:00:00Z&apikey=${API_KEY}`
     const result = await fetch(urlEvents).then((res) => res.json())
     const events: randomEventsType[] = result._embedded.events
 
@@ -102,7 +102,7 @@ export async function getRandomEvents() {
     }
 
     console.log('RESPONSE::', newEvents)
-    // addEvents(newEvents)
+    addEvents(newEvents)
 }
 
 export async function addEvents(item: eventType[]) {
