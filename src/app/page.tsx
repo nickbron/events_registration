@@ -21,6 +21,7 @@ export default function Home() {
     }, [url])
 
     console.log('EVENTS:', events)
+
     return (
         <>
             <SearchBar onSearch={handleSearch} />

@@ -19,3 +19,8 @@ export interface IRegistration {
     whereKnow: whereKnowType
     created: Date
 }
+
+export interface IstatResult {
+    dateRegistration: string
+    quantity: number
+}

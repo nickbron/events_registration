@@ -80,6 +80,11 @@ export async function addRegistration(idEvent: string | null, formData: FormData
     redirect('/')
 }
 
+export async function getCountParticipants() {
+    const count = await prisma.$queryRaw`SELECT * FROM Registration`
+    return count
+}
+
 export async function getRandomEvents() {
     const newEvents: eventType[] = []
     const API_KEY = process.env.TICKETMASTER_KEY

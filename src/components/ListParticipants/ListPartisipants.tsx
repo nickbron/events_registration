@@ -5,6 +5,7 @@ function calculateAge(birthday: Date) {
     const age = differenceInYears(new Date(), birthday)
     return age
 }
+
 export default function ListPartisipants({ data }: { data: Array<IRegistration> }) {
     return (
         <>
