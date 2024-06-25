@@ -10,18 +10,21 @@ export default function SimpleCharts({ arrX, arrY }: appProps) {
         <BarChart
             xAxis={[
                 {
-                    id: 'barCategories',
                     data: arrX,
                     scaleType: 'band',
+                    label: 'dates of registered participants',
                 },
             ]}
             series={[
                 {
                     data: arrY,
+                    label: 'number of registered participants',
                 },
             ]}
-            width={500}
+            yAxis={[{ tickMinStep: 1 }]}
+            // width={500}
             height={300}
+            barLabel="value"
         />
     )
 }

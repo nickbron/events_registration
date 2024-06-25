@@ -1,11 +1,12 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import ListPartisipants from '@/components/ListParticipants/ListPartisipants'
+// import ListPartisipants from '@/components/ListParticipants/ListPartisipants'
 
 import { useEffect, useState } from 'react'
 import { IRegistration, IstatResult } from '@/models'
 import Loading from '@/app/loading'
 import SimpleCharts from '@/components/Charts/charts'
+import QuickFilteringGrid from '@/components/FilterGrid/FilterGrid'
 
 export default function ViewPage() {
     const searchParams = useSearchParams()
@@ -39,12 +40,13 @@ export default function ViewPage() {
     statistic.forEach((itemResult) => arrY.push(itemResult.quantity))
 
     if (isLoading) return <Loading />
-
+    console.log('statistic', statistic)
     return (
-        <>
+        <div className="w-screen">
             {data.length ? (
                 <>
-                    <ListPartisipants data={data} />
+                    {/* <ListPartisipants data={data} /> */}
+                    <QuickFilteringGrid data={data} />
                     <SimpleCharts arrX={arrX} arrY={arrY} />
                 </>
             ) : (
@@ -52,6 +54,6 @@ export default function ViewPage() {
                     <p className="text-2xl md:text-4xl font-extrabold dark:text-slate-400">while there are no participants</p>
                 </div>
             )}
-        </>
+        </div>
     )
 }
