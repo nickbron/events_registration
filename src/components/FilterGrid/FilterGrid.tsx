@@ -35,6 +35,8 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
             headerClassName: 'super-app-theme--header',
             type: 'number',
             width: 80,
+            headerAlign: 'left',
+            align: 'left',
             // flex: 1,
             valueGetter: (value, row) => calculateAge(row.birthday),
         },
@@ -61,7 +63,7 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
         <Box
             sx={{
                 height: 300,
-                width: '100%',
+                // width: '100%',
                 '& .super-app-theme--header': {
                     backgroundColor: 'grey',
                 },
