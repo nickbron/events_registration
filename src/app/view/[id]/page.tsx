@@ -3,14 +3,14 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IRegistration, IstatResult } from '@/models'
 import Loading from '@/app/loading'
-// import SimpleCharts from '@/components/Charts/charts'
+import SimpleCharts from '@/components/Charts/charts'
 import QuickFilteringGrid from '@/components/FilterGrid/FilterGrid'
 
 export default function ViewPage() {
     const searchParams = useSearchParams()
     const idEvent = searchParams.get('id')
-    // const arrX: string[] = []
-    // const arrY: number[] = []
+    const arrX: string[] = []
+    const arrY: number[] = []
 
     const [data, setData] = useState<Array<IRegistration>>([])
     const [statistic, setStatistic] = useState<Array<IstatResult>>([])
@@ -31,8 +31,8 @@ export default function ViewPage() {
                 })
     }, [idEvent])
 
-    // statistic.forEach((item) => arrX.push(item.dateRegistration))
-    // statistic.forEach((itemResult) => arrY.push(itemResult.quantity))
+    statistic.forEach((item) => arrX.push(item.dateRegistration))
+    statistic.forEach((itemResult) => arrY.push(itemResult.quantity))
 
     if (isLoading) return <Loading />
     console.log('statistic', statistic)
@@ -41,7 +41,7 @@ export default function ViewPage() {
             {data.length ? (
                 <>
                     <QuickFilteringGrid data={data} />
-                    {/* <SimpleCharts arrX={arrX} arrY={arrY} /> */}
+                    <SimpleCharts arrX={arrX} arrY={arrY} />
                 </>
             ) : (
                 <div className="bg-gray-100 py-2 px-4">
