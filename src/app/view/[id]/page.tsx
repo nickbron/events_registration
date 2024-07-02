@@ -24,16 +24,13 @@ export default function ViewPage() {
             .then((data) => {
                 setData(data)
                 setLoading(false)
-            })
-    }, [idEvent])
-
-    useEffect(() => {
-        fetch(`/api/norParticipantsPerDay?id=${idEvent}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setStatistic(data)
-                setLoading(false)
-            })
+            }),
+            fetch(`/api/norParticipantsPerDay?id=${idEvent}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setStatistic(data)
+                    setLoading(false)
+                })
     }, [idEvent])
 
     statistic.forEach((item) => arrX.push(item.dateRegistration))
