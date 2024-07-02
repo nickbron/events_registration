@@ -34,7 +34,7 @@ export default function ViewPage() {
                 setStatistic(data)
                 setLoading(false)
             })
-    }, [])
+    }, [idEvent])
 
     statistic.forEach((item) => arrX.push(item.dateRegistration))
     statistic.forEach((itemResult) => arrY.push(itemResult.quantity))
