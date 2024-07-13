@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-
+import 'react-toastify/dist/ReactToastify.css'
 // These styles apply to every route in the application
 import '../styles/globals.css'
 
