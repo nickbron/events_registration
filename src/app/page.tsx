@@ -1,5 +1,7 @@
 'use client'
 import Events from '@/components/Events/Events'
+import NavBar from '@/components/NavBar/NavBar'
+
 import SearchBar from '@/components/SearchBar/SearchBar'
 import { useEffect, useState } from 'react'
 
@@ -20,10 +22,9 @@ export default function Home() {
         fetchEvents()
     }, [url])
 
-    console.log('EVENTS:', events)
-
     return (
         <>
+            <NavBar />
             <SearchBar onSearch={handleSearch} />
             <Events data={events} />
         </>

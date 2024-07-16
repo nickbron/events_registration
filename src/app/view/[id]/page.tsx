@@ -22,20 +22,20 @@ export default function ViewPage() {
             .then((data) => {
                 setData(data)
                 setLoading(false)
-            }),
-            fetch(`/api/norParticipantsPerDay?id=${idEvent}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setStatistic(data)
-                    setLoading(false)
-                })
+            })
+        fetch(`/api/norParticipantsPerDay?id=${idEvent}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setStatistic(data)
+                setLoading(false)
+            })
     }, [idEvent])
 
     statistic.forEach((item) => arrX.push(item.dateRegistration))
     statistic.forEach((itemResult) => arrY.push(itemResult.quantity))
 
     if (isLoading) return <Loading />
-    console.log('statistic', statistic)
+
     return (
         <div className="w-screen">
             {data.length ? (

@@ -1,7 +1,8 @@
+'use client'
 import { WereKnowStatus } from '@prisma/client'
 import { FormikValues, useFormik } from 'formik'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
 interface IFormInput {
@@ -36,6 +37,7 @@ export default function FormRegistration() {
             birthday: '',
             whereKnow: WereKnowStatus.FoundMySelf,
         },
+
         validationSchema: validationSchema,
         onSubmit: async (values: FormikValues) => {
             try {
@@ -46,7 +48,6 @@ export default function FormRegistration() {
                 body.append('birthday', values.birthday)
                 body.append('whereKnow', values.whereKnow)
                 body.append('eventsId', idEvent as string)
-
                 await fetch(`/api/eventRegistration/`, {
                     method: 'PUT',
                     body,
@@ -55,22 +56,16 @@ export default function FormRegistration() {
                     if (!res.ok) {
                         throw new Error('REGISTRATION error')
                     }
-
                     toast.success('Registration Success!', {
                         onClose: () => {
                             console.log('will be redirected')
                             router.push('/')
                         },
-                        position: 'top-center',
-                        autoClose: 1000,
                     })
                 })
             } catch (e) {
                 console.error('create registration error:', e), { status: 400 }
-                toast.error('Registration Error!', {
-                    position: 'top-center',
-                    autoClose: 1000,
-                })
+                toast.error('Registration Error!')
             } finally {
                 console.log('finish submit')
             }
@@ -87,6 +82,7 @@ export default function FormRegistration() {
                             <label className="block mb-2 font-bold text-gray-600" htmlFor="firstName">
                                 First Name
                             </label>
+
                             <input
                                 id="firstName"
                                 name="firstName"
@@ -97,7 +93,6 @@ export default function FormRegistration() {
                                 className="border border-gray-300 shadow p-3 w-full rounded "
                                 placeholder="First Name"
                             />
-
                             {formik.touched.firstName && formik.errors.firstName ? <div className="error">{formik.errors.firstName}</div> : null}
                         </div>
                         <div className="mb-5">
@@ -205,7 +200,6 @@ export default function FormRegistration() {
                     </form>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 }

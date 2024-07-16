@@ -1,4 +1,6 @@
+import { Providers } from '@/components/Providers/providers'
 import type { Metadata } from 'next'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 // These styles apply to every route in the application
 import '../styles/globals.css'
@@ -11,7 +13,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <Providers>
+                    {children}
+                    <ToastContainer position="top-center" autoClose={2000} limit={1} />
+                </Providers>
+            </body>
         </html>
     )
 }
