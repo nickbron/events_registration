@@ -7,6 +7,12 @@ module.exports = {
                 port: '',
                 pathname: '/dam/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'lh3.googleusercontent.com',
+                port: '',
+                pathname: '/a/**',
+            },
         ],
     },
     transpilePackages: ['@mui/x-charts'],
