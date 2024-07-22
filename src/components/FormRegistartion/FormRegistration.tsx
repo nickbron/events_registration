@@ -73,13 +73,13 @@ export default function FormRegistration() {
     })
 
     return (
-        <div className="bg-blue-200 min-h-screen flex items-center">
+        <div className=" min-h-screen flex items-center">
             <div className="w-full">
-                <h2 className="text-center text-blue-400 font-bold text-2xl uppercase m-10">Fill out our form</h2>
-                <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
+                <h2 className="text-center text-primary font-bold text-2xl uppercase m-5">Fill out our form</h2>
+                <div className=" p-10 rounded-lg border shadow md:w-3/4 mx-auto lg:w-1/2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-5">
-                            <label className="block mb-2 font-bold text-gray-600" htmlFor="firstName">
+                            <label className="block mb-2 font-bold" htmlFor="firstName">
                                 First Name
                             </label>
 
@@ -90,13 +90,13 @@ export default function FormRegistration() {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.firstName}
-                                className="border border-gray-300 shadow p-3 w-full rounded "
+                                className="border  shadow p-3 w-full rounded "
                                 placeholder="First Name"
                             />
                             {formik.touched.firstName && formik.errors.firstName ? <div className="error">{formik.errors.firstName}</div> : null}
                         </div>
                         <div className="mb-5">
-                            <label className="block mb-2 font-bold text-gray-600" htmlFor="lastName">
+                            <label className="block mb-2 font-bold " htmlFor="lastName">
                                 Last Name
                             </label>
                             <input
@@ -106,14 +106,14 @@ export default function FormRegistration() {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.lastName}
-                                className="border border-gray-300 shadow p-3 w-full rounded "
+                                className=" shadow p-3 w-full rounded "
                                 placeholder="Last Name"
                             />
                             {formik.touched.lastName && formik.errors.lastName ? <div className="error">{formik.errors.lastName}</div> : null}
                         </div>
 
                         <div className="mb-5">
-                            <label className="block mb-2 font-bold text-gray-600" htmlFor="email">
+                            <label className="block mb-2 font-bold " htmlFor="email">
                                 Email Address
                             </label>
                             <input
@@ -124,13 +124,13 @@ export default function FormRegistration() {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.email}
                                 placeholder="Email"
-                                className="border border-gray-300 shadow p-3 w-full rounded "
+                                className="shadow p-3 w-full rounded "
                             />
                             {formik.touched.email && formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
                         </div>
 
                         <div className="mb-5">
-                            <label className="block mb-2 font-bold text-gray-600" htmlFor="birthday">
+                            <label className="block mb-2 font-bold " htmlFor="birthday">
                                 Date of birth
                             </label>
                             <input
@@ -141,18 +141,18 @@ export default function FormRegistration() {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.birthday}
                                 placeholder="date of birth"
-                                className="border border-gray-300 shadow p-3 w-full rounded "
+                                className="border  shadow p-3 w-full rounded "
                             />
                             {formik.touched.birthday && formik.errors.birthday ? <div className="error">{formik.errors.birthday}</div> : null}
                         </div>
 
                         <div className="mb-5">
-                            <label className="block mb-2 font-bold text-gray-600" htmlFor="howDidYouKnow">
+                            <label className="block mb-2 font-bold " htmlFor="howDidYouKnow">
                                 Where did you hear about this event?
                             </label>
                             <div>
                                 <fieldset>
-                                    <label className="block mb-2 font-bold text-gray-600">
+                                    <label className="block mb-2 font-bold ">
                                         <input
                                             id="socialMedia"
                                             type="radio"
@@ -164,7 +164,7 @@ export default function FormRegistration() {
                                         <i className="pl-2">Social media</i>
                                     </label>
 
-                                    <label className="block mb-2 font-bold text-gray-600">
+                                    <label className="block mb-2 font-bold ">
                                         <input
                                             id="friends"
                                             type="radio"
@@ -177,7 +177,7 @@ export default function FormRegistration() {
                                         <i className="pl-2">Friends</i>
                                     </label>
 
-                                    <label className="block mb-2 font-bold text-gray-600">
+                                    <label className="block mb-2 font-bold ">
                                         <input
                                             id="foundMyself"
                                             type="radio"
@@ -194,7 +194,7 @@ export default function FormRegistration() {
                                 </fieldset>
                             </div>
                         </div>
-                        <button type="submit" className="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">
+                        <button type="submit" className="block w-full bg-primary font-bold p-4 rounded-lg">
                             Sign In
                         </button>
                     </form>

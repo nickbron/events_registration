@@ -1,6 +1,5 @@
 'use client'
 import Events from '@/components/Events/Events'
-import NavBar from '@/components/NavBar/NavBar'
 
 import SearchBar from '@/components/SearchBar/SearchBar'
 import { useEffect, useState } from 'react'
@@ -23,10 +22,9 @@ export default function Home() {
     }, [url])
 
     return (
-        <>
-            <NavBar />
+        <div className="bg-secondary px-4">
             <SearchBar onSearch={handleSearch} />
             <Events data={events} />
-        </>
+        </div>
     )
 }

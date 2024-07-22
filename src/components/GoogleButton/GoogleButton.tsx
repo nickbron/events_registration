@@ -10,11 +10,11 @@ export default function GoogleButton() {
         <div className="flex items-center justify-center ">
             <button
                 onClick={() => signIn('google', { callbackUrl })}
-                className=" px-4 py-2 border-2 border-gray-300 flex gap-2 rounded-full transition duration-300
-        hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
+                className=" px-4 py-2 border-2 flex gap-2 rounded-full transition duration-300 bg-secondary
+       "
             >
                 <Image src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo" width={20} height={20} />
-                <span>Login with Google</span>
+                <span className="">Login with Google</span>
             </button>
         </div>
     )
