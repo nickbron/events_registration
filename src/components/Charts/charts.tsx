@@ -22,7 +22,6 @@ export default function SimpleCharts({ arrX, arrY }: appProps) {
                 },
             ]}
             yAxis={[{ tickMinStep: 1 }]}
-            // width={500}
             height={300}
             barLabel="value"
         />

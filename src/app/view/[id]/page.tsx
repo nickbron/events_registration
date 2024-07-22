@@ -3,8 +3,9 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IRegistration, IstatResult } from '@/models'
 import Loading from '@/app/loading'
-import SimpleCharts from '@/components/Charts/charts'
-import QuickFilteringGrid from '@/components/FilterGrid/FilterGrid'
+// import SimpleCharts from '@/components/Charts/charts'
+// import QuickFilteringGrid from '@/components/FilterGrid/FilterGrid'
+import TableParticipants from '@/components/TableParticipants/TableParticipants'
 
 export default function ViewPage() {
     const searchParams = useSearchParams()
@@ -39,13 +40,14 @@ export default function ViewPage() {
     return (
         <div className="w-screen">
             {data.length ? (
-                <>
-                    <QuickFilteringGrid data={data} />
-                    <SimpleCharts arrX={arrX} arrY={arrY} />
-                </>
+                <div>
+                    <TableParticipants data={data} />
+                    {/* <QuickFilteringGrid data={data} /> */}
+                    {/* <SimpleCharts arrX={arrX} arrY={arrY} /> */}
+                </div>
             ) : (
-                <div className="bg-gray-100 py-2 px-4">
-                    <p className="text-2xl md:text-4xl font-extrabold dark:text-slate-400">while there are no participants</p>
+                <div className="py-2 px-4">
+                    <p className="text-2xl md:text-4xl ">while there are no participants</p>
                 </div>
             )}
         </div>

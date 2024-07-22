@@ -16,7 +16,6 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
             headerName: 'Full name',
             headerClassName: 'super-app-theme--header',
             width: 160,
-            // flex: 1,
             valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
         },
         {
@@ -25,9 +24,6 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
             headerClassName: 'super-app-theme--header',
             type: 'string',
             width: 180,
-            // flex: 1,
-            // headerAlign: 'left',
-            // align: 'left',
         },
         {
             field: 'birthday',
@@ -37,7 +33,6 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
             width: 80,
             headerAlign: 'left',
             align: 'left',
-            // flex: 1,
             valueGetter: (value, row) => calculateAge(row.birthday),
         },
         {
@@ -46,7 +41,6 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
             headerClassName: 'super-app-theme--header',
             type: 'string',
             width: 120,
-            // flex: 1,
         },
         {
             field: 'created',
@@ -54,7 +48,6 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
             headerClassName: 'super-app-theme--header',
             type: 'string',
             width: 120,
-            // flex: 1,
             valueGetter: (value, row) => format(row.created, 'dd/MM/yyyy'),
         },
     ]
@@ -63,10 +56,8 @@ export default function QuickFilteringGrid({ data }: { data: Array<IRegistration
         <Box
             sx={{
                 height: 300,
-                // width: '100%',
-                '& .super-app-theme--header': {
-                    backgroundColor: 'grey',
-                },
+
+                '& .super-app-theme--header': {},
             }}
         >
             <DataGrid

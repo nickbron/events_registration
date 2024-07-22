@@ -75,7 +75,7 @@ export default function FormRegistration() {
     return (
         <div className=" min-h-screen flex items-center">
             <div className="w-full">
-                <h2 className="text-center text-primary font-bold text-2xl uppercase m-5">Fill out our form</h2>
+                <h2 className="text-center text-primary font-bold  uppercase m-5">Fill out our form</h2>
                 <div className=" p-10 rounded-lg border shadow md:w-3/4 mx-auto lg:w-1/2">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-5">
