@@ -3,15 +3,13 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IRegistration, IstatResult } from '@/models'
 import Loading from '@/app/loading'
-// import SimpleCharts from '@/components/Charts/charts'
-// import QuickFilteringGrid from '@/components/FilterGrid/FilterGrid'
+
 import TableParticipants from '@/components/TableParticipants/TableParticipants'
+import CahrtOfParticipants from '@/components/Charts/ChartOfParticipants'
 
 export default function ViewPage() {
     const searchParams = useSearchParams()
     const idEvent = searchParams.get('id')
-    const arrX: string[] = []
-    const arrY: number[] = []
 
     const [data, setData] = useState<Array<IRegistration>>([])
     const [statistic, setStatistic] = useState<Array<IstatResult>>([])
@@ -32,8 +30,7 @@ export default function ViewPage() {
             })
     }, [idEvent])
 
-    statistic.forEach((item) => arrX.push(item.dateRegistration))
-    statistic.forEach((itemResult) => arrY.push(itemResult.quantity))
+    console.log('Statistic:', statistic)
 
     if (isLoading) return <Loading />
 
@@ -41,9 +38,14 @@ export default function ViewPage() {
         <div className="w-screen">
             {data.length ? (
                 <div>
-                    <TableParticipants data={data} />
-                    {/* <QuickFilteringGrid data={data} /> */}
-                    {/* <SimpleCharts arrX={arrX} arrY={arrY} /> */}
+                    <div className="m-5">
+                        <p className="flex  justify-center text-2xl md:text-4xl text-primary font-extrabold p-5 ">
+                            Report on registered participants
+                        </p>
+                        <TableParticipants data={data} />
+                    </div>
+
+                    <CahrtOfParticipants statisticData={statistic} />
                 </div>
             ) : (
                 <div className="py-2 px-4">
